@@ -1,7 +1,6 @@
 
 
 <?php
-//Connecting to the database server
 if(isset($_POST['name'])){
 $server = "localhost";
 $username = "root";
@@ -9,27 +8,9 @@ $password = "";
 
 $con = mysqli_connect($server, $username, $password);
 
-//Validating connection
 if(!$con){
     die("connection to this database failed due to this error : ". mysqli_connect_error());
 }
-
-// echo "<br> Success connecting to this database db.";
-
-// $name = $_POST['name'];
-// $age = $_POST['age'];
-// $gender = $_POST['gender'];
-// $email = $_POST['email'];
-// $phone = $_POST['phone'];
-// $other = $_POST['other'];
-
-//Getting post requests
-// $name = isset($_POST['name']) ? $_POST['name'] : 'defaultname';
-// $age = isset($_POST['age']) ? $_POST['age'] : 'defaultage';
-// $gender = isset($_POST['gender']) ? $_POST['gender'] : 'defaultgender';
-// $email = isset($_POST['email']) ? $_POST['email'] : 'defaultemail';
-// $phone = isset($_POST['phone']) ? $_POST['phone'] : 'defaultphone';
-// $other = isset($_POST['other']) ? $_POST['other'] : 'defaultother';
 
 $name = isset($_POST['name']) ? $_POST['name'] : '';
 $age = isset($_POST['age']) ? $_POST['age'] : '';
@@ -40,7 +21,6 @@ $other = isset($_POST['other']) ? $_POST['other'] : 'No information provided';
 
 $sql = "INSERT INTO `us trip`.`trip` (`name`, `age`, `gender`, `email`, `phone`, `other`, `dateOfCreation`) VALUES ('$name', '$age', '$gender', '$email', '$phone', '$other', current_timestamp())";
 
-// $insert = true;
 if($con->query($sql) == true){
     $insert = true;
 }
@@ -48,38 +28,6 @@ else{
     echo "ERROR: $sql <br> $con->error";
 }
 
-
-// $insert = false;
-
-// if ($con->query($sql) == true) {
-//     $insert = true;
-// } else {
-//     echo "ERROR: $sql <br> $con->error";
-// }
-// $insert = false;
-// if ($con->query($sql) == true) {
-//     $insert = true;
-    
-//     // Display success message
-//     echo "<p class='submitbtn'>Thanks for submitting the form for joining us on the US trip</p>";        
-// } else {
-//     echo "ERROR: $sql <br> $con->error";
-// }
-
-
-// $sql = "INSERT INTO `us trip`.`trip` (`name`, `age`, `gender`, `email`, `phone`, `other`, `dateOfCreation`) VALUES ($name, $age, $gender, $email, $phone, $other, current_timestamp())";
-// // $sql = "INSERT INTO `us trip`.`trip` (`name`, `age`, `gender`, `email`, `phone`, `other`, `dateOfCreation`) VALUES ('ramesh', '123', 'asd', 'mn@gmail.ocm', '01234567890', 'sdc', current_timestamp())";
-// // echo $sql;
-// $insert = false;
-// if($con->query($sql) == true){
-//     // echo "Successfully inserted";
-//     $insert = true;
-// }
-// else{
-//     echo "ERROR: $sql <br> $con->error";
-// }
-
-//Closing connection
 $con->close();
 }
 ?>
@@ -102,13 +50,6 @@ $con->close();
         
         <h1>Welcome to VIT Chennai US trip form</h1>
         <p>Enter your details and submit this form to confirm your participation in the trip</p>
-        <?php
-        // $insert = true;
-        
-        // if($insert == true){
-            // echo "<p class='submitbtn'>Thanks for submiting the form for joining us on the US trip</p>";        
-        // }
-        ?>
         
         <form action="index.php" method="post">
             <input type="text" name="name" id="name" placeholder="Enter your name">
